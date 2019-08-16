@@ -1,4 +1,4 @@
-let listOwners = function(File) {
+module.exports.listPets = function(File) {
     return new Promise((resolve, reject) => {
         if(File) {
             resolve(File)
@@ -6,11 +6,4 @@ let listOwners = function(File) {
             reject(null)
         }
     });
-}
-
-let listPets = listOwners
-
-module.exports = {
-    listOwners : listOwners,
-    listPets : listPets
 }
