@@ -1,0 +1,23 @@
+{
+  "name": "pet",
+  "version": "1.0.0",
+  "description": "Pet Microservice",
+  "main": "app.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/zhfahan77/petms.git"
+  },
+  "keywords": [
+    "pet",
+    "microservice"
+  ],
+  "author": "Adform",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zhfahan77/petms/issues"
+  },
+  "homepage": "https://github.com/zhfahan77/petms#readme"
+}
