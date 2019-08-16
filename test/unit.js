@@ -8,7 +8,7 @@ let ErrMsg = require("../api/utils/errmsg.js")
 describe("List Owners", () => {
 
     describe("Owners.listOwners should return owners and call data handler function", () => {
-        it("it should return an array of objects with ownders details", (done) => {
+        it("it should return an array of objects with owners details", (done) => {
 
             Owners
                 .listOwners(Data, File)
@@ -19,6 +19,21 @@ describe("List Owners", () => {
                     done()
                 }).catch(err => {
                     console.log(err)
+                })
+        });
+    });
+
+    describe("Owners.listOwners should return an error message if no records found", () => {
+        it("it should return an object with error message", (done) => {
+            File = []
+
+            Owners
+                .listOwners(Data, File)
+                .then(result => {
+                    console.log(result)
+                }).catch(err => {
+                    err.should.be.equal(ErrMsg.NotFound)
+                    done()
                 })
         });
     });
