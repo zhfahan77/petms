@@ -1,6 +1,6 @@
 const Core = require("../core/owners.js")
 const Data = require("../data/owners.js")
-const File = require("../data/data.json")
+const File = require("../data/json/owners.json")
 
 module.exports.listOwners = function(req, res) {
 	Core
