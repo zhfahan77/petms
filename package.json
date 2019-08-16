@@ -19,5 +19,9 @@
   "bugs": {
     "url": "https://github.com/zhfahan77/petms/issues"
   },
-  "homepage": "https://github.com/zhfahan77/petms#readme"
+  "homepage": "https://github.com/zhfahan77/petms#readme",
+  "dependencies": {
+    "dotenv": "^8.0.0",
+    "express": "^4.17.1"
+  }
 }
