@@ -4,7 +4,12 @@ router = express.Router(),
 Utils = require("../utils/utils.js"),
 Owners = require("../features/owners.js")
 
-//Product Search
+// Health
+router
+	.route("/health")
+	.get(Utils.HealthCheck)
+
+// Owners
 router
 	.route("/owners")
 	.get(Owners.listOwners)
