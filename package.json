@@ -4,7 +4,7 @@
   "description": "Pet Microservice",
   "main": "app.js",
   "scripts": {
-    "test": "mocha test/e2e.js",
+    "test": "mocha test/e2e.js --exit",
     "unit": "mocha test/unit.js"
   },
   "repository": {
@@ -26,6 +26,8 @@
     "express": "^4.17.1"
   },
   "devDependencies": {
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
     "mocha": "^6.2.0",
     "should": "^13.2.3"
   }

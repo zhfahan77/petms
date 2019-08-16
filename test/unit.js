@@ -5,10 +5,10 @@ let File = require("../api/data/data.json")
 let should = require('should')
 let ErrMsg = require("../api/utils/errmsg.js")
 
-describe("List Owner", () => {
+describe("List Owners", () => {
 
     describe("Owners.listOwners should return owners and call data handler function", () => {
-        it("it should return an array of objects with product details", (done) => {
+        it("it should return an array of objects with ownders details", (done) => {
 
             Owners
                 .listOwners(Data, File)
