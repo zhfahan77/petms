@@ -7,6 +7,23 @@ let ErrMsg = require("../api/utils/errmsg.js")
 
 chai.use(chaiHttp)
 
+describe("Health Check Endpoint", () => {
+
+    describe("GET /api/health", () => {
+      it("it should show a message if health is ok", (done) => {
+
+        chai
+            .request(app)
+            .get("/api/health")
+            .end((err, result) => {
+                  result.status.should.be.eql(200);
+                  result.body.should.be.eql(ErrMsg.OK);
+              done();
+            });
+      });
+    });
+});
+
 describe("Unwanted Route Exception Handling", () => {
 
     describe("GET /invalid", () => {
