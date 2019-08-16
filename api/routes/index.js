@@ -3,6 +3,7 @@ const express = require("express"),
 router = express.Router(),
 Utils = require("../utils/utils.js"),
 Owners = require("../features/owners.js")
+Pets = require("../features/pets.js")
 
 // Health
 router
@@ -13,6 +14,11 @@ router
 router
 	.route("/owners")
 	.get(Owners.listOwners)
+
+// Pets
+router
+	.route("/pets")
+	.get(Pets.listPets)
 
 // Error handling if bad request
 router

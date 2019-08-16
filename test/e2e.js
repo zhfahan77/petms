@@ -71,3 +71,20 @@ describe("List Owners API", () => {
         });
     });
 });
+
+describe("List Pets API", () => {
+
+    describe("GET /api/pets should return owners", () => {
+        it("it should return an array of objects with owners details", (done) => {
+            chai
+                .request(app)
+                .get('/api/pets')
+                .end((err, result) => {
+                    result.body.should.be.an.Array
+                    result.body.length.should.be.above(0)
+                    result.status.should.be.eql(200)
+                    done()
+                })
+        });
+    });
+});
