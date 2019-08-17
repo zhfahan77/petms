@@ -61,7 +61,7 @@ describe("List Pets", () => {
 
     describe("Pets.listPets should return an error message if no records found", () => {
         it("it should return an object with error message", (done) => {
-            PetsFile = []
+            let PetsFile = []
 
             Pets
                 .listPets(Data, PetsFile)
@@ -91,6 +91,27 @@ describe("Add Pet", () => {
                 .addPet(Data, PetsFile, newPet)
                 .then(result => {
                     result.should.be.equal(newPet)
+                    done()
+                }).catch(err => {
+                    console.log(err)
+                })
+        });
+    });
+});
+
+describe("List Pets for an Owner", () => {
+
+    describe("Pets.listPetsForAnOwner should return pets and call data handler function", () => {
+        it("it should return an array of objects with pet details", (done) => {
+            let Params = {
+                "owner_id" : 1
+            }
+
+            Pets
+                .listPetsForAnOwner(Data, PetsFile, Params)
+                .then(result => {
+                    result.should.be.an.Array
+                    result[0].should.have.a.property('owner_id').equal(Params.owner_id)
                     done()
                 }).catch(err => {
                     console.log(err)

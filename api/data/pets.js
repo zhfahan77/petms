@@ -23,3 +23,17 @@ module.exports.addPet = function(File, Pet) {
             })
     });
 }
+
+module.exports.listPetsForAnOwner = function(File, Params) {
+    return new Promise((resolve, reject) => {
+        FSHandler
+            .readFile(File)
+            .then(result => {
+                let filtered_data = result.filter(el => el.owner_id == Params.owner_id)
+                resolve(filtered_data)
+            }).catch(err => {
+                console.log(err)
+                reject(err)
+            })
+    });
+}

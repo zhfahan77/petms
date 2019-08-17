@@ -21,3 +21,13 @@ module.exports.addPet = function(req, res) {
 			res.status(200).json(err)
 		})
 }
+
+module.exports.listPetsForAnOwner = function(req, res) {
+	Core
+		.listPetsForAnOwner(Data, File, req.params)
+		.then(result => {
+			res.status(200).json(result)
+		}).catch(err => {
+			res.status(200).json(err)
+		})
+}

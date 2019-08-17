@@ -14,10 +14,17 @@ let addPet = function(File, Pet) {
     });
 }
 
+let listPetsForAnOwner = function(File, Params) {
+    return new Promise((resolve, reject) => {
+        resolve(File.filter(el => el.owner_id == Params.owner_id))
+    });
+}
+
 let listPets = listOwners
 
 module.exports = {
     listOwners : listOwners,
     listPets : listPets,
     addPet : addPet,
+    listPetsForAnOwner : listPetsForAnOwner,
 }
