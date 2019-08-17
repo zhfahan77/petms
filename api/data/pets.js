@@ -69,3 +69,20 @@ module.exports.editPet = function(File, Params, Pet) {
             })
     });
 }
+
+module.exports.listPet = function(File, Params) {
+    return new Promise((resolve, reject) => {
+        FSHandler
+            .readFile(File)
+            .then(result => {
+                let filtered_data = result.filter(el => el.id == Params.pet_id)
+                if(filtered_data.length) {
+                    resolve(filtered_data[0])
+                } else {
+                    resolve(null)
+                }
+            }).catch(err => {
+                reject(err)
+            })
+    });
+}

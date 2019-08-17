@@ -154,3 +154,21 @@ describe("Edit Pet API", () => {
         });
     });
 });
+
+describe("List One Pet API", () => {
+
+    describe("GET /api/pets/:pet_id should return one pet", () => {
+        it("it should return an object with pets details", (done) => {
+            let pet_id = 1
+
+            chai
+                .request(app)
+                .get('/api/pets/' + pet_id)
+                .end((err, result) => {
+                    result.body.should.have.a.property('id').equal(pet_id)
+                    result.status.should.be.eql(200)
+                    done()
+                })
+        });
+    });
+});

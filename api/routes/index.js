@@ -23,6 +23,7 @@ router
 
 router
 	.route("/pets/:pet_id")
+	.get(Pets.listPet)
 	.put(Pets.editPet)
 
 router
