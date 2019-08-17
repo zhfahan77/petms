@@ -1,0 +1,8 @@
+info: emA6PJpwfQik2BjcMHm7Ls GET /api/pets/owner/12
+error: emA6PJpwfQik2BjcMHm7Ls {"message":"No records Found","statusCode":404}
+info: o4WjmesKmGgwTYH2ceHEL6 GET /api/pets/owner/12
+error: o4WjmesKmGgwTYH2ceHEL6 {"message":"No records Found","statusCode":404}
+info: esv6AiFjicCFwn8n2nQfrc GET /api/pets/owner/1
+info: esv6AiFjicCFwn8n2nQfrc 200
+info: of2UMrP37joNpTuGgkcfuS GET /api/pets/owner/1
+info: of2UMrP37joNpTuGgkcfuS 200
