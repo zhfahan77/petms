@@ -14,3 +14,18 @@ module.exports.listOwners = function(Data, File) {
 			})
 	})
 }
+
+module.exports.listOwner = function(Data, File, Params) {
+	return new Promise((resolve, reject) => {
+		Data
+			.listOwner(File, Params)
+			.then(result => {
+				if(!result) {
+					return reject(ErrMsg.NotFound)
+				}
+				resolve(result)
+			}).catch(err => {
+				reject(err)
+			})
+	})
+}

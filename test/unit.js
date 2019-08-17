@@ -27,7 +27,7 @@ describe("List Owners", () => {
 
     describe("Owners.listOwners should return an error message if no records found", () => {
         it("it should return an object with error message", (done) => {
-            OwnersFile = []
+            let OwnersFile = []
 
             Owners
                 .listOwners(Data, OwnersFile)
@@ -203,6 +203,45 @@ describe("List One Pet", () => {
 
             Pets
                 .listPet(Data, PetsFile, Params)
+                .then(result => {
+                    console.log(result)
+                }).catch(err => {
+                    err.should.be.equal(ErrMsg.NotFound)
+                    done()
+                })
+        });
+    });
+});
+
+describe("List One Owner", () => {
+
+    describe("Owners.listOwner should return owner and call data handler function", () => {
+        it("it should return an object with owner details", (done) => {
+            let Params = {
+                "owner_id" : 1
+            }
+
+            Owners
+                .listOwner(Data, OwnersFile, Params)
+                .then(result => {
+                    result.should.have.a.property("id").equal(Params.owner_id)
+                    done()
+                }).catch(err => {
+                    console.log(err)
+                })
+        });
+    });
+
+    describe("Owners.listOwner should return an error message if no records found", () => {
+        it("it should return an object with error message", (done) => {
+            let OwnersFile = []
+
+            let Params = {
+                "owner_id" : 1
+            }
+
+            Owners
+                .listOwner(Data, OwnersFile, Params)
                 .then(result => {
                     console.log(result)
                 }).catch(err => {

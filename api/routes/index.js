@@ -15,6 +15,10 @@ router
 	.route("/owners")
 	.get(Owners.listOwners)
 
+router
+	.route("/owners/:owner_id")
+	.get(Owners.listOwner)
+
 // Pets
 router
 	.route("/pets")

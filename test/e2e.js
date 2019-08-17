@@ -172,3 +172,21 @@ describe("List One Pet API", () => {
         });
     });
 });
+
+describe("List One Owner API", () => {
+
+    describe("GET /api/owners/:owner_id should return one owner", () => {
+        it("it should return an object with owner details", (done) => {
+            let owner_id = 1
+
+            chai
+                .request(app)
+                .get('/api/owners/' + owner_id)
+                .end((err, result) => {
+                    result.body.should.have.a.property('id').equal(owner_id)
+                    result.status.should.be.eql(200)
+                    done()
+                })
+        });
+    });
+});

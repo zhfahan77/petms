@@ -14,3 +14,15 @@ module.exports.listOwners = function(req, res) {
 			logger.error(res.locals.reqID + " " + JSON.stringify(err))
 		})
 }
+
+module.exports.listOwner = function(req, res) {
+	Core
+		.listOwner(Data, File, req.params)
+		.then(result => {
+			res.status(200).json(result)
+			logger.info(res.locals.reqID + " " + 200)
+		}).catch(err => {
+			res.status(200).json(err)
+			logger.error(res.locals.reqID + " " + JSON.stringify(err))
+		})
+}
