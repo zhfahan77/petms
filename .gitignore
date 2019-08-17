@@ -3,3 +3,4 @@ node_modules
 .gitconfig
 .DS_Store
 JSON
+*.log
