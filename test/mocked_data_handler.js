@@ -32,6 +32,18 @@ let editPet = function(File, Params, Pet) {
     });
 }
 
+let listPet = function(File, Params) {
+    return new Promise((resolve, reject) => {
+        let filtered_array = File.filter(el => el.id == Params.pet_id)
+
+        if(filtered_array.length) {
+            resolve(filtered_array[0])
+        } else {
+            resolve(null)
+        }
+    })
+}
+
 let listPets = listOwners
 
 module.exports = {
@@ -40,4 +52,5 @@ module.exports = {
     addPet : addPet,
     listPetsForAnOwner : listPetsForAnOwner,
     editPet : editPet,
+    listPet : listPet,
 }

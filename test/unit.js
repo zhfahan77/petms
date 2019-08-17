@@ -173,3 +173,42 @@ describe("Edit Pet", () => {
         });
     });
 });
+
+describe("List One Pet", () => {
+
+    describe("Pets.listPet should return pet and call data handler function", () => {
+        it("it should return an object with pets details", (done) => {
+            let Params = {
+                "pet_id" : 1
+            }
+
+            Pets
+                .listPet(Data, PetsFile, Params)
+                .then(result => {
+                    result.should.have.a.property("id").equal(Params.pet_id)
+                    done()
+                }).catch(err => {
+                    console.log(err)
+                })
+        });
+    });
+
+    describe("Pets.listPet should return an error message if no records found", () => {
+        it("it should return an object with error message", (done) => {
+            let PetsFile = []
+
+            let Params = {
+                "pet_id" : 1
+            }
+
+            Pets
+                .listPet(Data, PetsFile, Params)
+                .then(result => {
+                    console.log(result)
+                }).catch(err => {
+                    err.should.be.equal(ErrMsg.NotFound)
+                    done()
+                })
+        });
+    });
+});
