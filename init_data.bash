@@ -26,6 +26,7 @@ echo '[
 
 echo '[
 {
+	"id" : 1,
     "name": "Pet 1",
     "color": "white",
     "age": 3,
@@ -33,6 +34,7 @@ echo '[
     "owner_id": 1
 },
 {
+    "id" : 2,
     "name": "Pet 3",
     "color": "black",
     "age": 3,
@@ -40,6 +42,7 @@ echo '[
     "owner_id": 3
 },
 {
+    "id" : 3,
     "name": "Pet 3",
     "color": "black",
     "age": 3,
