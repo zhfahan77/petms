@@ -37,3 +37,35 @@ module.exports.listPetsForAnOwner = function(File, Params) {
             })
     });
 }
+
+module.exports.editPet = function(File, Params, Pet) {
+    return new Promise((resolve, reject) => {
+        var updatedData
+        FSHandler
+            .readFile(File)
+            .then(result => {
+                return result
+            }).then(result => {
+                let foundIndex = result.findIndex(el => el.id == Params.pet_id);
+                if(foundIndex < 0) {
+                    return reject([])
+                } else {
+                    updatedData = {
+                        "id" : result[foundIndex].id,
+                        "name" : Pet.name || result[foundIndex].name,
+                        "color" : Pet.color || result[foundIndex].color,
+                        "age" : Pet.age || result[foundIndex].age,
+                        "breed" : Pet.breed || result[foundIndex].breed,
+                        "owner_id" : result[foundIndex].owner_id
+                    }
+
+                    result[foundIndex] = updatedData
+                    return FSHandler.writeDirectToFile(File, result)
+                }
+            }).then(result => {
+                resolve(updatedData)
+            }).catch(err => {
+                reject(err)
+            })
+    });
+}

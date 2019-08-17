@@ -31,3 +31,14 @@ module.exports.readFile = function(file) {
         })
     });
 }
+
+module.exports.writeDirectToFile = function(file, newData) {
+    return new Promise((resolve, reject) => {
+        fs.writeFile(file, JSON.stringify(newData), function(err) {
+            if (err) {
+                return reject(false)
+            }
+            resolve(true)
+        })
+    })
+}
