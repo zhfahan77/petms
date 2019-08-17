@@ -6,4 +6,4 @@ COPY ./ $WORKDIR
 
 RUN npm install --unsafe-perm
 
-CMD NODE_ENV=production node app.js
+CMD npm start
