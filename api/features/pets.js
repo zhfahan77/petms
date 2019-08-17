@@ -1,6 +1,6 @@
-const Core = require("../core/pets.js")
-Data = require("../data/pets.js")
-File = __dirname + "/../../JSON/pets.json"
+const Core = require("../core/pets.js"),
+Data = require("../data/pets.js"),
+File = __dirname + "/../../JSON/pets.json",
 logger = require("../utils/logger.js")
 
 module.exports.listPets = function(req, res) {

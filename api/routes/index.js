@@ -2,7 +2,7 @@
 const express = require("express"),
 router = express.Router(),
 Utils = require("../utils/utils.js"),
-Owners = require("../features/owners.js")
+Owners = require("../features/owners.js"),
 Pets = require("../features/pets.js")
 
 // Health

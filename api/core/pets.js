@@ -1,5 +1,4 @@
 const ErrMsg = require("../utils/errmsg.js")
-fs = require('fs')
 
 module.exports.listPets = function(Data, File) {
 	return new Promise((resolve, reject) => {
