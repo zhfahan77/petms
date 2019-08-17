@@ -56,3 +56,18 @@ module.exports.editPet = function(Data, File, Params, Pet) {
 			})
 	})
 }
+
+module.exports.listPet = function(Data, File, Params) {
+	return new Promise((resolve, reject) => {
+		Data
+			.listPet(File, Params)
+			.then(result => {
+				if(!result) {
+					return reject(ErrMsg.NotFound)
+				}
+				resolve(result)
+			}).catch(err => {
+				reject(err)
+			})
+	})
+}
