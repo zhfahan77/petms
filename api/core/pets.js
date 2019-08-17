@@ -42,3 +42,18 @@ module.exports.listPetsForAnOwner = function(Data, File, Params) {
 			})
 	})
 }
+
+module.exports.editPet = function(Data, File, Params, Pet) {
+	return new Promise((resolve, reject) => {
+		Data
+			.editPet(File, Params, Pet)
+			.then(result => {
+				resolve(result)
+			}).catch(err => {
+				if(!err || !err.length) {
+					return reject(ErrMsg.NotFound)
+				}
+				reject(ErrMsg.SomethingWentWrong)
+			})
+	})
+}

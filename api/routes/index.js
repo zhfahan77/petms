@@ -22,6 +22,10 @@ router
 	.post(Pets.addPet)
 
 router
+	.route("/pets/:pet_id")
+	.put(Pets.editPet)
+
+router
 	.route("/pets/owner/:owner_id")
 	.get(Pets.listPetsForAnOwner)
 

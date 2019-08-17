@@ -119,3 +119,57 @@ describe("List Pets for an Owner", () => {
         });
     });
 });
+
+describe("Edit Pet", () => {
+
+    describe("Pets.editPet should edit pet and call data handler function", () => {
+        it("it should return an object with pet details", (done) => {
+            let updatedPet = {
+                "name": "Pet 4",
+                "color": "white",
+                "age": 4,
+                "breed": "breed1",
+                "owner_id": 2
+            }
+
+            let Params = {
+                "pet_id" : 1
+            }
+
+            Pets
+                .editPet(Data, PetsFile, Params, updatedPet)
+                .then(result => {
+                    result.should.be.equal(updatedPet)
+                    done()
+                }).catch(err => {
+                    console.log(err)
+                })
+        });
+    });
+
+    describe("Pets.editPet should return an error message if no records found", () => {
+        it("it should return an object with error message", (done) => {
+            let PetsFile = []
+            let updatedPet = {
+                "name": "Pet 4",
+                "color": "white",
+                "age": 4,
+                "breed": "breed1",
+                "owner_id": 2
+            }
+
+            let Params = {
+                "pet_id" : 12
+            }
+
+            Pets
+                .editPet(Data, PetsFile, Params, updatedPet)
+                .then(result => {
+                    console.log(result)
+                }).catch(err => {
+                    err.should.be.equal(ErrMsg.NotFound)
+                    done()
+                })
+        });
+    });
+});
