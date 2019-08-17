@@ -129,3 +129,28 @@ describe("List Pets For An Owner API", () => {
         });
     });
 });
+
+describe("Edit Pet API", () => {
+
+    describe("PUT /api/pets/:pet_id should edit pet", () => {
+        it("it should return an object with pet details", (done) => {
+            let UpdatedData = {
+                "name": "Pet 1 Updated",
+                "color": "white",
+                "age": 4,
+                "breed": "breed1"
+            }
+
+            let pet_id = 1
+
+            chai
+                .request(app)
+                .put('/api/pets/' + pet_id)
+                .send(UpdatedData)
+                .end((err, result) => {
+                    result.body.should.have.a.property('name')
+                    done()
+                })
+        });
+    });
+});
