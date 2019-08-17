@@ -21,6 +21,10 @@ router
 	.get(Pets.listPets)
 	.post(Pets.addPet)
 
+router
+	.route("/pets/owner/:owner_id")
+	.get(Pets.listPetsForAnOwner)
+
 // Error handling if bad request
 router
     .route('*')

@@ -112,3 +112,20 @@ describe("Add Pets API", () => {
         });
     });
 });
+
+describe("List Pets For An Owner API", () => {
+
+    describe("Get /api/pets/owner/:owner_id should return pets of that owner", () => {
+        it("it should return an array of objects with pet details", (done) => {
+            let owner_id = 1
+
+            chai
+                .request(app)
+                .get('/api/pets/owner/' + owner_id)
+                .end((err, result) => {
+                    result.body.should.be.an.Array
+                    done()
+                })
+        });
+    });
+});

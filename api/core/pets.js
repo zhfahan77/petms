@@ -27,3 +27,18 @@ module.exports.addPet = function(Data, File, Pet) {
 			})
 	})
 }
+
+module.exports.listPetsForAnOwner = function(Data, File, Params) {
+	return new Promise((resolve, reject) => {
+		Data
+			.listPetsForAnOwner(File, Params)
+			.then(result => {
+				if(!result || !result.length) {
+					return reject(ErrMsg.NotFound)
+				}
+				resolve(result)
+			}).catch(err => {
+				reject(ErrMsg.SomethingWentWrong)
+			})
+	})
+}
