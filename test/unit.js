@@ -46,8 +46,8 @@ describe("List Pets", () => {
     describe("Pets.listPets should return pets and call data handler function", () => {
         it("it should return an array of objects with pets details", (done) => {
 
-            Owners
-                .listOwners(Data, PetsFile)
+            Pets
+                .listPets(Data, PetsFile)
                 .then(result => {
                     result.should.be.an.Array
                     result.length.should.be.above(0)
@@ -63,13 +63,37 @@ describe("List Pets", () => {
         it("it should return an object with error message", (done) => {
             PetsFile = []
 
-            Owners
-                .listOwners(Data, PetsFile)
+            Pets
+                .listPets(Data, PetsFile)
                 .then(result => {
                     console.log(result)
                 }).catch(err => {
                     err.should.be.equal(ErrMsg.NotFound)
                     done()
+                })
+        });
+    });
+});
+
+describe("Add Pet", () => {
+
+    describe("Pets.addPet should add pet and call data handler function", () => {
+        it("it should return an object with pet details", (done) => {
+            let newPet = {
+                "name": "Pet 4",
+                "color": "white",
+                "age": 4,
+                "breed": "breed1",
+                "owner_id": 2
+            }
+
+            Pets
+                .addPet(Data, PetsFile, newPet)
+                .then(result => {
+                    result.should.be.equal(newPet)
+                    done()
+                }).catch(err => {
+                    console.log(err)
                 })
         });
     });

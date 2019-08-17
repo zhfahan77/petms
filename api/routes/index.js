@@ -19,6 +19,7 @@ router
 router
 	.route("/pets")
 	.get(Pets.listPets)
+	.post(Pets.addPet)
 
 // Error handling if bad request
 router

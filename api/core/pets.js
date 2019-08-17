@@ -1,4 +1,5 @@
 const ErrMsg = require("../utils/errmsg.js")
+fs = require('fs')
 
 module.exports.listPets = function(Data, File) {
 	return new Promise((resolve, reject) => {
@@ -11,6 +12,18 @@ module.exports.listPets = function(Data, File) {
 				resolve(result)
 			}).catch(err => {
 				reject(err)
+			})
+	})
+}
+
+module.exports.addPet = function(Data, File, Pet) {
+	return new Promise((resolve, reject) => {
+		Data
+			.addPet(File, Pet)
+			.then(result => {
+				resolve(result)
+			}).catch(err => {
+				reject(ErrMsg.SomethingWentWrong)
 			})
 	})
 }

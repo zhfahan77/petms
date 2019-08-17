@@ -1,15 +1,33 @@
-const fsp = require('fs').promises
+const fs = require('fs')
 ErrMsg = require('./errmsg.js')
 
-module.exports.readFile = function(file) {
-	if(!file) return ErrMsg.RequiredFieldNotFound
+module.exports.writeFile = function(file, newData) {
+    return new Promise((resolve, reject) => {
+        fs.readFile(file, function(err, data) {
+            if (err) {
+                return reject(false)
+            }
+            var json = JSON.parse(data)
+            json.push(newData)
 
-	fsp
-		.readFile(file)
-		.then(data => {
-			return data
-		})
-		.catch(err => {
-			return err
-		})
+            fs.writeFile(file, JSON.stringify(json), function(err) {
+                if (err) {
+                    return reject(false)
+                }
+                resolve(true)
+            })
+        })
+    });
+}
+
+module.exports.readFile = function(file) {
+    return new Promise((resolve, reject) => {
+        fs.readFile(file, function(err, data) {
+            if (err) {
+                return reject(false)
+            }
+            var json = JSON.parse(data)
+            resolve(json)
+        })
+    });
 }
