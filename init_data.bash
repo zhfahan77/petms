@@ -1,4 +1,6 @@
-[
+#!/bin/bash
+mkdir -p JSON;
+echo '[
 	{
 	    "id" : 1,
 	    "name": "Owner 1",
@@ -20,4 +22,27 @@
 	    "phone": "00123456789",
 	    "email": "test@owner3.com"
 	}
-]
+]' > JSON/owners.json;
+
+echo '[
+{
+    "name": "Pet 1",
+    "color": "white",
+    "age": 3,
+    "breed": "breed1",
+    "owner_id": 1
+},
+{
+    "name": "Pet 3",
+    "color": "black",
+    "age": 3,
+    "breed": "breed2",
+    "owner_id": 3
+},
+{
+    "name": "Pet 3",
+    "color": "black",
+    "age": 3,
+    "breed": "breed2",
+    "owner_id": 3
+}]' > JSON/pets.json;

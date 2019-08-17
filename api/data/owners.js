@@ -1,9 +1,13 @@
+const FSHandler = require("../utils/fshandler.js")
+
 module.exports.listOwners = function(File) {
     return new Promise((resolve, reject) => {
-        if(File) {
-            resolve(File)
-        } else {
-            reject(null)
-        }
+        FSHandler
+            .readFile(File)
+            .then(result => {
+                resolve(result)
+            }).catch(err => {
+                reject(err)
+            })
     });
 }

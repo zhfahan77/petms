@@ -10,17 +10,17 @@ chai.use(chaiHttp)
 describe("Health Check Endpoint", () => {
 
     describe("GET /api/health", () => {
-      it("it should show a message if health is ok", (done) => {
+        it("it should show a message if health is ok", (done) => {
 
-        chai
-            .request(app)
-            .get("/api/health")
-            .end((err, result) => {
-                  result.status.should.be.eql(200);
-                  result.body.should.be.eql(ErrMsg.OK);
-              done();
-            });
-      });
+            chai
+                .request(app)
+                .get("/api/health")
+                .end((err, result) => {
+                    result.status.should.be.eql(200);
+                    result.body.should.be.eql(ErrMsg.OK);
+                    done();
+                });
+        });
     });
 });
 
@@ -74,8 +74,8 @@ describe("List Owners API", () => {
 
 describe("List Pets API", () => {
 
-    describe("GET /api/pets should return owners", () => {
-        it("it should return an array of objects with owners details", (done) => {
+    describe("GET /api/pets should return pets", () => {
+        it("it should return an array of objects with pets details", (done) => {
             chai
                 .request(app)
                 .get('/api/pets')
@@ -83,6 +83,30 @@ describe("List Pets API", () => {
                     result.body.should.be.an.Array
                     result.body.length.should.be.above(0)
                     result.status.should.be.eql(200)
+                    done()
+                })
+        });
+    });
+});
+
+describe("Add Pets API", () => {
+
+    describe("POST /api/pets should add pets", () => {
+        it("it should return an object with pet details", (done) => {
+            let Data = {
+                "name": "Pet 4",
+                "color": "white",
+                "age": 4,
+                "breed": "breed1",
+                "owner_id": 2
+            }
+
+            chai
+                .request(app)
+                .post('/api/pets')
+                .send(Data)
+                .end((err, result) => {
+                    result.body.should.be.eql(Data)
                     done()
                 })
         });
