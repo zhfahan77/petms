@@ -416,3 +416,49 @@ Running Unit Tests
   12 passing (31ms)
 
 ```
+
+### Dir Structure
+
+```
+.
+├── Dockerfile
+├── JSON
+│   ├── owners.json
+│   ├── pets.json
+│   └── pets_test.json
+├── Makefile
+├── README.md
+├── access.log
+├── api
+│   ├── core
+│   │   ├── owners.js
+│   │   └── pets.js
+│   ├── data
+│   │   ├── owners.js
+│   │   └── pets.js
+│   ├── features
+│   │   ├── owners.js
+│   │   └── pets.js
+│   ├── routes
+│   │   └── index.js
+│   └── utils
+│       ├── errmsg.js
+│       ├── fshandler.js
+│       ├── logger.js
+│       └── utils.js
+├── app.js
+├── appconfig.js
+├── error.log
+├── package-lock.json
+├── package.json
+├── sample-json
+│   ├── owners.json
+│   └── pets.json
+└── test
+    ├── e2e.js
+    ├── mocked_data_handler.js
+    ├── mocked_json
+    │   ├── owners.json
+    │   └── pets.json
+    └── unit.js
+```
