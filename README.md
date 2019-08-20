@@ -19,6 +19,11 @@ mkdir -p JSON
 cp sample-json/* JSON/
 ```
 
+For Help
+
+```sh
+make help
+```
 
 Build the application containers...
 
