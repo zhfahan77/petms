@@ -25,6 +25,10 @@ test: ## Run E2E Tests
 	@echo "Running E2E Tests"
 	@npm test
 
+init: ## Reset Database
+	@echo "Resetting Database"
+	@cp sample-json/* JSON/
+
 dockertest: ## Run E2E Tests in Docker
 	@echo "Running E2E Tests in Docker"
 	@docker run --rm $(PROJECT_NAME) npm test

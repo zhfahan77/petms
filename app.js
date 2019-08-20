@@ -1,8 +1,9 @@
 // Require all necessary files
-const express = require("express")
-app = express()
-Coniguration = require('./appconfig.js')
 require('dotenv').config()
+const express = require("express"),
+app = express(),
+Coniguration = require('./appconfig.js')
+
 app.set('x-powered-by', false);
 
 // api routes
