@@ -12,6 +12,12 @@ Docker
 
 ---
 Create a .env file in root of the project with the contents of the .env.sample file.
+Create new Dir in project root named JSON and copy all the contents of sample-json dir. (This is initial database)
+
+```sh
+mkdir -p JSON
+cp sample-json/* JSON/
+```
 
 
 Build the application containers...

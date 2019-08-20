@@ -5,7 +5,6 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "postinstall": "sh init_data.bash",
     "test": "mocha test/e2e.js --exit",
     "unit": "mocha test/unit.js"
   },

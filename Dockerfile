@@ -4,6 +4,6 @@ WORKDIR /apps
 
 COPY ./ $WORKDIR
 
-RUN npm install --unsafe-perm
+RUN npm install
 
 CMD npm start
