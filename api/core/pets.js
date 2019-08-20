@@ -1,4 +1,5 @@
 const ErrMsg = require("../utils/errmsg.js")
+short = require('shortid-36');
 
 module.exports.listPets = function(Data, File) {
 	return new Promise((resolve, reject) => {
@@ -20,6 +21,8 @@ module.exports.addPet = function(Data, File, Pet) {
 		if(!Pet.name || !Pet.color || !Pet.age || !Pet.breed || !Pet.owner_id) {
 			return reject(ErrMsg.AddPetRequiredFieldsNotFound)
 		}
+
+		Pet.id = short.generate()
 
 		Data
 			.addPet(File, Pet)

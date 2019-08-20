@@ -2,7 +2,7 @@ const express = require("express")
 bodyParser = require("body-parser")
 ErrMsg = require("./api/utils/errmsg.js")
 logger = require("./api/utils/logger.js")
-short = require('short-uuid');
+short = require('shortid-36');
 
 module.exports.ConfigApp = function(app) {
 
