@@ -15,7 +15,7 @@ module.exports.ConfigApp = (app) => {
         bodyParser.urlencoded({ extended: false }),
         bodyParser.json(),
         (req, res, next) => {
-            res.setHeader("Access-Control-Allow-Methods", "POST, PUT, DELETE, GET");
+            res.setHeader("Access-Control-Allow-Methods", "POST, PUT, GET");
             res.header("Access-Control-Allow-Origin", "http://" + req.headers.host);
             res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
             let regex = /(\/api\/)/g; // pattern which checks for `/api/` in the URL
