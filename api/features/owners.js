@@ -1,6 +1,8 @@
 const Core = require("../core/owners.js"),
 Data = require("../data/owners.js"),
-File = __dirname + "/../../JSON/owners.json",
+Path = require("path"),
+PROOT = Path.resolve(),
+File =  PROOT + process.env.OWNERS_FILE_PATH,
 logger = require("../utils/logger.js")
 
 module.exports.listOwners = function(req, res) {

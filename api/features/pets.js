@@ -1,6 +1,8 @@
 const Core = require("../core/pets.js"),
 Data = require("../data/pets.js"),
-File = __dirname + "/../../JSON/pets.json",
+Path = require("path"),
+PROOT = Path.resolve(),
+File = PROOT + process.env.PETS_FILE_PATH,
 logger = require("../utils/logger.js")
 
 module.exports.listPets = function(req, res) {
