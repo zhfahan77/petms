@@ -5,8 +5,10 @@ app = express(),
 Coniguration = require('./appconfig.js'),
 rateLimit = require("express-rate-limit")
 ErrMsg = require("./api/utils/errmsg.js")
+helmet = require('helmet')
 
-app.set('x-powered-by', false);
+// Security Module
+app.use(helmet())
 
 // api routes
 let apiroutes = require("./api/routes");
