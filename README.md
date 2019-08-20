@@ -2,11 +2,16 @@
 
 Pet Microservice
 
+### Pre Requisite
+
+---
+
+Docker
 
 ### Setup Instructions
 
 ---
-Create a .env file in root of the project with the contents of the .env.example file.
+Create a .env file in root of the project with the contents of the .env.sample file.
 
 
 Build the application containers...
