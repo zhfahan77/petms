@@ -275,3 +275,125 @@ always return a message and a statusCode indicating it's HTTP Status Code
     "statusCode" : 404
 }
 ```
+
+---
+
+### Run Tests
+
+#### E2E Tests (End to end test; Using Chai HTTP Client)
+
+```sh
+make test
+```
+
+Sample Test Output
+```
+Running E2E Tests
+
+> pet@1.0.0 test /Users/zhfahan77/Documents/adform-codingassignment
+> mocha test/e2e.js --exit
+
+Application is running on 3000
+
+
+  Health Check Endpoint
+    GET /api/health
+      ✓ it should show a message if health is ok
+
+  Unwanted Route Exception Handling
+    GET /invalid
+      ✓ it should show a message if no routes found
+    GET /api/invalid
+      ✓ it should show a message if no routes found
+
+  List Owners API
+    /api/owners should return owners
+      ✓ it should return an array of objects with owners details
+
+  List Pets API
+    GET /api/pets should return pets
+      ✓ it should return an array of objects with pets details
+
+  Add Pets API
+    POST /api/pets should add pets
+      ✓ it should return an object with pet details
+
+  List Pets For An Owner API
+    Get /api/pets/owner/:owner_id should return pets of that owner
+      ✓ it should return an array of objects with pet details
+
+  Edit Pet API
+    PUT /api/pets/:pet_id should edit pet
+      ✓ it should return an object with pet details
+
+  List One Pet API
+    GET /api/pets/:pet_id should return one pet
+      ✓ it should return an object with pets details
+
+  List One Owner API
+    GET /api/owners/:owner_id should return one owner
+      ✓ it should return an object with owner details
+
+
+  10 passing (126ms)
+
+```
+
+#### Unit Tests (Functional Unit Test; Testing Core Component)
+
+```sh
+make unit-test
+```
+
+Sample Test Output
+
+```
+Running Unit Tests
+
+> pet@1.0.0 unit /Users/zhfahan77/Documents/adform-codingassignment
+> mocha test/unit.js
+
+
+
+  List Owners
+    Owners.listOwners should return owners and call data handler function
+      ✓ it should return an array of objects with owners details
+    Owners.listOwners should return an error message if no records found
+      ✓ it should return an object with error message
+
+  List Pets
+    Pets.listPets should return pets and call data handler function
+      ✓ it should return an array of objects with pets details
+    Pets.listPets should return an error message if no records found
+      ✓ it should return an object with error message
+
+  Add Pet
+    Pets.addPet should add pet and call data handler function
+      ✓ it should return an object with pet details
+
+  List Pets for an Owner
+    Pets.listPetsForAnOwner should return pets and call data handler function
+      ✓ it should return an array of objects with pet details
+
+  Edit Pet
+    Pets.editPet should edit pet and call data handler function
+      ✓ it should return an object with pet details
+    Pets.editPet should return an error message if no records found
+      ✓ it should return an object with error message
+
+  List One Pet
+    Pets.listPet should return pet and call data handler function
+      ✓ it should return an object with pets details
+    Pets.listPet should return an error message if no records found
+      ✓ it should return an object with error message
+
+  List One Owner
+    Owners.listOwner should return owner and call data handler function
+      ✓ it should return an object with owner details
+    Owners.listOwner should return an error message if no records found
+      ✓ it should return an object with error message
+
+
+  12 passing (31ms)
+
+```
