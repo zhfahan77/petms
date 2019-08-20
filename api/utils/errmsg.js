@@ -26,3 +26,7 @@ module.exports.SomethingWentWrong = {
     "message": "Something Went Wrong",
     "statusCode": 500
 }
+module.exports.MaxRequestsExceeds = {
+    "message" : "Maximum requests per 15 min exceeds, please try again",
+    "statusCode" : 429
+}
