@@ -22,7 +22,7 @@ cp sample-json/* JSON/
 For Help
 
 ```sh
-make help
+$ make help
 ```
 
 Build the application containers...
@@ -299,7 +299,7 @@ always return a message and a statusCode indicating it's HTTP Status Code
 #### E2E Tests (End to end test; Using Chai HTTP Client)
 
 ```sh
-make test
+$ make test
 ```
 
 Sample Test Output
@@ -358,7 +358,7 @@ Application is running on 3000
 #### Unit Tests (Functional Unit Test; Testing Core Component)
 
 ```sh
-make unit-test
+$ make unit-test
 ```
 
 Sample Test Output
