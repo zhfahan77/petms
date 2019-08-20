@@ -1,7 +1,7 @@
 const ErrMsg = require("../utils/errmsg.js")
 short = require('shortid-36');
 
-module.exports.listPets = function(Data, File) {
+module.exports.listPets = (Data, File) => {
 	return new Promise((resolve, reject) => {
 		Data
 			.listPets(File)
@@ -10,13 +10,14 @@ module.exports.listPets = function(Data, File) {
 					return reject(ErrMsg.NotFound)
 				}
 				resolve(result)
-			}).catch(err => {
+			})
+			.catch(err => {
 				reject(err)
 			})
 	})
 }
 
-module.exports.addPet = function(Data, File, Pet) {
+module.exports.addPet = (Data, File, Pet) => {
 	return new Promise((resolve, reject) => {
 		if(!Pet.name || !Pet.color || !Pet.age || !Pet.breed || !Pet.owner_id) {
 			return reject(ErrMsg.AddPetRequiredFieldsNotFound)
@@ -28,13 +29,14 @@ module.exports.addPet = function(Data, File, Pet) {
 			.addPet(File, Pet)
 			.then(result => {
 				resolve(result)
-			}).catch(err => {
+			})
+			.catch(err => {
 				reject(ErrMsg.SomethingWentWrong)
 			})
 	})
 }
 
-module.exports.listPetsForAnOwner = function(Data, File, Params) {
+module.exports.listPetsForAnOwner = (Data, File, Params) => {
 	return new Promise((resolve, reject) => {
 		Data
 			.listPetsForAnOwner(File, Params)
@@ -43,19 +45,21 @@ module.exports.listPetsForAnOwner = function(Data, File, Params) {
 					return reject(ErrMsg.NotFound)
 				}
 				resolve(result)
-			}).catch(err => {
+			})
+			.catch(err => {
 				reject(ErrMsg.SomethingWentWrong)
 			})
 	})
 }
 
-module.exports.editPet = function(Data, File, Params, Pet) {
+module.exports.editPet = (Data, File, Params, Pet) => {
 	return new Promise((resolve, reject) => {
 		Data
 			.editPet(File, Params, Pet)
 			.then(result => {
 				resolve(result)
-			}).catch(err => {
+			})
+			.catch(err => {
 				if(!err || !err.length) {
 					return reject(ErrMsg.NotFound)
 				}
@@ -64,7 +68,7 @@ module.exports.editPet = function(Data, File, Params, Pet) {
 	})
 }
 
-module.exports.listPet = function(Data, File, Params) {
+module.exports.listPet = (Data, File, Params) => {
 	return new Promise((resolve, reject) => {
 		Data
 			.listPet(File, Params)
@@ -73,7 +77,8 @@ module.exports.listPet = function(Data, File, Params) {
 					return reject(ErrMsg.NotFound)
 				}
 				resolve(result)
-			}).catch(err => {
+			})
+			.catch(err => {
 				reject(err)
 			})
 	})

@@ -1,12 +1,12 @@
-const express = require("express")
-bodyParser = require("body-parser")
-ErrMsg = require("./api/utils/errmsg.js")
-logger = require("./api/utils/logger.js")
-short = require('shortid-36');
+const express = require("express"),
+bodyParser = require("body-parser"),
+ErrMsg = require("./api/utils/errmsg.js"),
+logger = require("./api/utils/logger.js"),
+short = require('shortid-36')
 
-module.exports.ConfigApp = function(app) {
+module.exports.ConfigApp = (app) => {
 
-    function appUse(app, ...arg) {
+    let appUse = (app, ...arg) => {
         return app.use(arg)
     }
 
@@ -26,7 +26,7 @@ module.exports.ConfigApp = function(app) {
                 next();
             } else { // if the URL does not contain `/api`:
                 logger.error(req.method + " " + req.originalUrl)
-                res.status(404).json(ErrMsg.DefaultRouteException)
+                res.status(ErrMsg.DefaultRouteException.statusCode).json(ErrMsg.DefaultRouteException)
             }
         }
     )

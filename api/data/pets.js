@@ -1,30 +1,39 @@
 const FSHandler = require("../utils/fshandler.js")
 
-module.exports.listPets = function(File) {
+module.exports.listPets = (File) => {
     return new Promise((resolve, reject) => {
         FSHandler
             .readFile(File)
             .then(result => {
                 resolve(result)
-            }).catch(err => {
+            })
+            .catch(err => {
                 reject(err)
             })
     });
 }
 
-module.exports.addPet = function(File, Pet) {
+module.exports.addPet = (File, Pet) => {
     return new Promise((resolve, reject) => {
         FSHandler
-            .writeFile(File, Pet)
+            .readFile(File)
+            .then(result => {
+                result.push(Pet)
+                return result
+            })
+            .then(result => {
+                return FSHandler.writeFile(File, result)
+            })
             .then(result => {
                 resolve(Pet)
-            }).catch(err => {
+            })
+            .catch(err => {
                 reject(err)
             })
     });
 }
 
-module.exports.listPetsForAnOwner = function(File, Params) {
+module.exports.listPetsForAnOwner = (File, Params) => {
     return new Promise((resolve, reject) => {
         FSHandler
             .readFile(File)
@@ -38,14 +47,15 @@ module.exports.listPetsForAnOwner = function(File, Params) {
     });
 }
 
-module.exports.editPet = function(File, Params, Pet) {
+module.exports.editPet = (File, Params, Pet) => {
     return new Promise((resolve, reject) => {
         var updatedData
         FSHandler
             .readFile(File)
             .then(result => {
                 return result
-            }).then(result => {
+            })
+            .then(result => {
                 let foundIndex = result.findIndex(el => el.id == Params.pet_id);
                 if(foundIndex < 0) {
                     return reject([])
@@ -60,17 +70,19 @@ module.exports.editPet = function(File, Params, Pet) {
                     }
 
                     result[foundIndex] = updatedData
-                    return FSHandler.writeDirectToFile(File, result)
+                    return FSHandler.writeFile(File, result)
                 }
-            }).then(result => {
+            })
+            .then(result => {
                 resolve(updatedData)
-            }).catch(err => {
+            })
+            .catch(err => {
                 reject(err)
             })
     });
 }
 
-module.exports.listPet = function(File, Params) {
+module.exports.listPet = (File, Params) => {
     return new Promise((resolve, reject) => {
         FSHandler
             .readFile(File)
@@ -81,7 +93,8 @@ module.exports.listPet = function(File, Params) {
                 } else {
                     resolve(null)
                 }
-            }).catch(err => {
+            })
+            .catch(err => {
                 reject(err)
             })
     });

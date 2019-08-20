@@ -1,6 +1,6 @@
 const ErrMsg = require("../utils/errmsg.js")
 
-module.exports.listOwners = function(Data, File) {
+module.exports.listOwners = (Data, File) => {
 	return new Promise((resolve, reject) => {
 		Data
 			.listOwners(File)
@@ -9,13 +9,14 @@ module.exports.listOwners = function(Data, File) {
 					return reject(ErrMsg.NotFound)
 				}
 				resolve(result)
-			}).catch(err => {
+			})
+			.catch(err => {
 				reject(err)
 			})
 	})
 }
 
-module.exports.listOwner = function(Data, File, Params) {
+module.exports.listOwner = (Data, File, Params) => {
 	return new Promise((resolve, reject) => {
 		Data
 			.listOwner(File, Params)
@@ -24,7 +25,8 @@ module.exports.listOwner = function(Data, File, Params) {
 					return reject(ErrMsg.NotFound)
 				}
 				resolve(result)
-			}).catch(err => {
+			})
+			.catch(err => {
 				reject(err)
 			})
 	})
