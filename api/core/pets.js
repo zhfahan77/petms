@@ -17,6 +17,10 @@ module.exports.listPets = function(Data, File) {
 
 module.exports.addPet = function(Data, File, Pet) {
 	return new Promise((resolve, reject) => {
+		if(!Pet.name || !Pet.color || !Pet.age || !Pet.breed || !Pet.owner_id) {
+			return reject(ErrMsg.AddPetRequiredFieldsNotFound)
+		}
+
 		Data
 			.addPet(File, Pet)
 			.then(result => {
