@@ -106,7 +106,8 @@ describe("Add Pets API", () => {
                 .post('/api/pets')
                 .send(Data)
                 .end((err, result) => {
-                    result.body.should.be.eql(Data)
+                    result.body.name.should.be.eql(Data.name)
+                    result.body.owner_id.should.be.eql(Data.owner_id)
                     done()
                 })
         });
