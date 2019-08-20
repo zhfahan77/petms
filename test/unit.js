@@ -97,6 +97,26 @@ describe("Add Pet", () => {
                 })
         });
     });
+
+    describe("Pets.addPet should return error message if required fields not provided", () => {
+        it("it should return an object with error details", (done) => {
+            let newPet = {
+                "name": "Pet 4",
+                "age": 4,
+                "breed": "breed1",
+                "owner_id": 2
+            }
+
+            Pets
+                .addPet(Data, PetsFile, newPet)
+                .then(result => {
+                    console.log(result)
+                }).catch(err => {
+                    err.should.be.equal(ErrMsg.AddPetRequiredFieldsNotFound)
+                    done()
+                })
+        });
+    });
 });
 
 describe("List Pets for an Owner", () => {

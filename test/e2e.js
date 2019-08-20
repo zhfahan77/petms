@@ -111,6 +111,26 @@ describe("Add Pets API", () => {
                 })
         });
     });
+
+    describe("POST /api/pets should return error message if required fields are not provided", () => {
+        it("it should return an object with error details", (done) => {
+            let Data = {
+                "name": "Pet 4",
+                "age": 4,
+                "breed": "breed1",
+                "owner_id": 2
+            }
+
+            chai
+                .request(app)
+                .post('/api/pets')
+                .send(Data)
+                .end((err, result) => {
+                    result.body.should.be.eql(ErrMsg.AddPetRequiredFieldsNotFound)
+                    done()
+                })
+        });
+    });
 });
 
 describe("List Pets For An Owner API", () => {
