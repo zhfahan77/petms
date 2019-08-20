@@ -12,7 +12,7 @@ module.exports.listOwners = function(req, res) {
 			res.status(200).json(result)
 			logger.info(res.locals.reqID + " " + 200)
 		}).catch(err => {
-			res.status(200).json(err)
+			res.status(err.statusCode || 500).json(err)
 			logger.error(res.locals.reqID + " " + JSON.stringify(err))
 		})
 }
@@ -24,7 +24,7 @@ module.exports.listOwner = function(req, res) {
 			res.status(200).json(result)
 			logger.info(res.locals.reqID + " " + 200)
 		}).catch(err => {
-			res.status(200).json(err)
+			res.status(err.statusCode || 500).json(err)
 			logger.error(res.locals.reqID + " " + JSON.stringify(err))
 		})
 }
