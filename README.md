@@ -37,7 +37,7 @@ $ make clean
 
 ---
 
-### `GET` `/api/health/`
+### `GET` `/api/health`
 
 To Check Application Health.
 
@@ -58,7 +58,7 @@ Content-Type: application/json
 
 ---
 
-### `GET` `/api/owners/`
+### `GET` `/api/owners`
 
 To List All Owners.
 
@@ -165,7 +165,7 @@ Content-Type: application/json
 
 ---
 
-### `POST` `/api/pets/`
+### `POST` `/api/pets`
 
 To Add One Pet.
 
