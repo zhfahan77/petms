@@ -254,7 +254,7 @@ Content-Type: application/json
 ```
 
 ##### Body
-_Mandatory_: All fields.
+_Optional_: All fields.
 ```json
 {
     "name": "Pet 3",
