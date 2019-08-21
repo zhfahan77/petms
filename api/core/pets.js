@@ -1,10 +1,10 @@
 const ErrMsg = require("../utils/errmsg.js")
 short = require('shortid-36');
 
-module.exports.listPets = (Data, File) => {
+module.exports.listPets = (DB) => {
 	return new Promise((resolve, reject) => {
-		Data
-			.listPets(File)
+		DB
+			.listPets()
 			.then(result => {
 				if(!result.length) {
 					return reject(ErrMsg.NotFound)
@@ -17,7 +17,7 @@ module.exports.listPets = (Data, File) => {
 	})
 }
 
-module.exports.addPet = (Data, File, Pet) => {
+module.exports.addPet = (DB, Pet) => {
 	return new Promise((resolve, reject) => {
 		if(!Pet.name || !Pet.color || !Pet.age || !Pet.breed || !Pet.owner_id) {
 			return reject(ErrMsg.AddPetRequiredFieldsNotFound)
@@ -25,8 +25,8 @@ module.exports.addPet = (Data, File, Pet) => {
 
 		Pet.id = short.generate()
 
-		Data
-			.addPet(File, Pet)
+		DB
+			.addPet(Pet)
 			.then(result => {
 				resolve(result)
 			})
@@ -36,10 +36,10 @@ module.exports.addPet = (Data, File, Pet) => {
 	})
 }
 
-module.exports.listPetsForAnOwner = (Data, File, Params) => {
+module.exports.listPetsForAnOwner = (DB, Params) => {
 	return new Promise((resolve, reject) => {
-		Data
-			.listPetsForAnOwner(File, Params)
+		DB
+			.listPetsForAnOwner(Params)
 			.then(result => {
 				if(!result.length) {
 					return reject(ErrMsg.NotFound)
@@ -52,10 +52,10 @@ module.exports.listPetsForAnOwner = (Data, File, Params) => {
 	})
 }
 
-module.exports.editPet = (Data, File, Params, Pet) => {
+module.exports.editPet = (DB, Params, Pet) => {
 	return new Promise((resolve, reject) => {
-		Data
-			.editPet(File, Params, Pet)
+		DB
+			.editPet(Params, Pet)
 			.then(result => {
 				resolve(result)
 			})
@@ -68,10 +68,10 @@ module.exports.editPet = (Data, File, Params, Pet) => {
 	})
 }
 
-module.exports.listPet = (Data, File, Params) => {
+module.exports.listPet = (DB, Params) => {
 	return new Promise((resolve, reject) => {
-		Data
-			.listPet(File, Params)
+		DB
+			.listPet(Params)
 			.then(result => {
 				if(!result) {
 					return reject(ErrMsg.NotFound)

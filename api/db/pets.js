@@ -1,6 +1,9 @@
-const FSHandler = require("../utils/fshandler.js")
+const FSHandler = require("../utils/fshandler.js"),
+Path = require("path"),
+PROOT = Path.resolve(),
+File = PROOT + process.env.PETS_FILE_PATH
 
-module.exports.listPets = (File) => {
+module.exports.listPets = () => {
     return new Promise((resolve, reject) => {
         FSHandler
             .readFile(File)
@@ -13,7 +16,7 @@ module.exports.listPets = (File) => {
     });
 }
 
-module.exports.addPet = (File, Pet) => {
+module.exports.addPet = (Pet) => {
     return new Promise((resolve, reject) => {
         FSHandler
             .readFile(File)
@@ -33,7 +36,7 @@ module.exports.addPet = (File, Pet) => {
     });
 }
 
-module.exports.listPetsForAnOwner = (File, Params) => {
+module.exports.listPetsForAnOwner = (Params) => {
     return new Promise((resolve, reject) => {
         FSHandler
             .readFile(File)
@@ -47,7 +50,7 @@ module.exports.listPetsForAnOwner = (File, Params) => {
     });
 }
 
-module.exports.editPet = (File, Params, Pet) => {
+module.exports.editPet = (Params, Pet) => {
     return new Promise((resolve, reject) => {
         var updatedData
         FSHandler
@@ -82,7 +85,7 @@ module.exports.editPet = (File, Params, Pet) => {
     });
 }
 
-module.exports.listPet = (File, Params) => {
+module.exports.listPet = (Params) => {
     return new Promise((resolve, reject) => {
         FSHandler
             .readFile(File)

@@ -1,13 +1,10 @@
 const Core = require("../core/pets.js"),
-Data = require("../data/pets.js"),
-Path = require("path"),
-PROOT = Path.resolve(),
-File = PROOT + process.env.PETS_FILE_PATH,
+DB = require("../db/pets.js"),
 logger = require("../utils/logger.js")
 
 module.exports.listPets = (req, res) => {
 	Core
-		.listPets(Data, File)
+		.listPets(DB)
 		.then(result => {
 			res.status(200).json(result)
 			logger.info(res.locals.reqID + " " + 200)
@@ -20,7 +17,7 @@ module.exports.listPets = (req, res) => {
 
 module.exports.addPet = (req, res) => {
 	Core
-		.addPet(Data, File, req.body)
+		.addPet(DB, req.body)
 		.then(result => {
 			res.status(201).json(result)
 			logger.info(res.locals.reqID + " " + 201)
@@ -33,7 +30,7 @@ module.exports.addPet = (req, res) => {
 
 module.exports.listPetsForAnOwner = (req, res) => {
 	Core
-		.listPetsForAnOwner(Data, File, req.params)
+		.listPetsForAnOwner(DB, req.params)
 		.then(result => {
 			res.status(200).json(result)
 			logger.info(res.locals.reqID + " " + 200)
@@ -46,7 +43,7 @@ module.exports.listPetsForAnOwner = (req, res) => {
 
 module.exports.editPet = (req, res) => {
 	Core
-		.editPet(Data, File, req.params, req.body)
+		.editPet(DB, req.params, req.body)
 		.then(result => {
 			res.status(201).json(result)
 			logger.info(res.locals.reqID + " " + 201)
@@ -59,7 +56,7 @@ module.exports.editPet = (req, res) => {
 
 module.exports.listPet = (req, res) => {
 	Core
-		.listPet(Data, File, req.params)
+		.listPet(DB, req.params)
 		.then(result => {
 			res.status(200).json(result)
 			logger.info(res.locals.reqID + " " + 200)

@@ -1,13 +1,10 @@
 const Core = require("../core/owners.js"),
-Data = require("../data/owners.js"),
-Path = require("path"),
-PROOT = Path.resolve(),
-File =  PROOT + process.env.OWNERS_FILE_PATH,
+DB = require("../db/owners.js"),
 logger = require("../utils/logger.js")
 
 module.exports.listOwners = (req, res) => {
 	Core
-		.listOwners(Data, File)
+		.listOwners(DB)
 		.then(result => {
 			res.status(200).json(result)
 			logger.info(res.locals.reqID + " " + 200)
@@ -20,7 +17,7 @@ module.exports.listOwners = (req, res) => {
 
 module.exports.listOwner = (req, res) => {
 	Core
-		.listOwner(Data, File, req.params)
+		.listOwner(DB, req.params)
 		.then(result => {
 			res.status(200).json(result)
 			logger.info(res.locals.reqID + " " + 200)

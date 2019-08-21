@@ -1,6 +1,9 @@
-const FSHandler = require("../utils/fshandler.js")
+const FSHandler = require("../utils/fshandler.js"),
+Path = require("path"),
+PROOT = Path.resolve(),
+File =  PROOT + process.env.OWNERS_FILE_PATH
 
-module.exports.listOwners = (File) => {
+module.exports.listOwners = () => {
     return new Promise((resolve, reject) => {
         FSHandler
             .readFile(File)
@@ -13,7 +16,7 @@ module.exports.listOwners = (File) => {
     });
 }
 
-module.exports.listOwner = (File, Params) => {
+module.exports.listOwner = (Params) => {
     return new Promise((resolve, reject) => {
         FSHandler
             .readFile(File)

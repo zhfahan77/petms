@@ -1,5 +1,5 @@
 //Require the dev-dependencies
-let Data = require("./mocked_data_handler.js")
+let DB = require("./mocked_db_handler.js")
 let Owners = require("../api/core/owners.js")
 let Pets = require("../api/core/pets.js")
 let OwnersFile = require("./mocked_json/owners.json")
@@ -9,28 +9,33 @@ let ErrMsg = require("../api/utils/errmsg.js")
 
 describe("List Owners", () => {
 
-    describe("Owners.listOwners should return owners and call data handler function", () => {
+    describe("Owners.listOwners should return owners and call DB handler function", () => {
         it("it should return an array of objects with owners details", (done) => {
 
             Owners
-                .listOwners(Data, OwnersFile)
+                .listOwners(DB)
                 .then(result => {
                     result.should.be.an.Array
                     result.length.should.be.above(0)
                     result.should.be.equal(OwnersFile)
                     done()
                 }).catch(err => {
-                    console.log(err)
+                    console.log("here", err)
                 })
         });
     });
 
     describe("Owners.listOwners should return an error message if no records found", () => {
         it("it should return an object with error message", (done) => {
-            let OwnersFile = []
+
+            DB.listOwners = () => {
+                return new Promise((resolve, reject) => {
+                    resolve([])
+                });
+            }
 
             Owners
-                .listOwners(Data, OwnersFile)
+                .listOwners(DB)
                 .then(result => {
                     console.log(result)
                 }).catch(err => {
@@ -43,11 +48,11 @@ describe("List Owners", () => {
 
 describe("List Pets", () => {
 
-    describe("Pets.listPets should return pets and call data handler function", () => {
+    describe("Pets.listPets should return pets and call DB handler function", () => {
         it("it should return an array of objects with pets details", (done) => {
 
             Pets
-                .listPets(Data, PetsFile)
+                .listPets(DB)
                 .then(result => {
                     result.should.be.an.Array
                     result.length.should.be.above(0)
@@ -61,10 +66,14 @@ describe("List Pets", () => {
 
     describe("Pets.listPets should return an error message if no records found", () => {
         it("it should return an object with error message", (done) => {
-            let PetsFile = []
+            DB.listPets = function() {
+                return new Promise((resolve, reject) => {
+                    resolve([])
+                });
+            }
 
             Pets
-                .listPets(Data, PetsFile)
+                .listPets(DB)
                 .then(result => {
                     console.log(result)
                 }).catch(err => {
@@ -77,7 +86,7 @@ describe("List Pets", () => {
 
 describe("Add Pet", () => {
 
-    describe("Pets.addPet should add pet and call data handler function", () => {
+    describe("Pets.addPet should add pet and call DB handler function", () => {
         it("it should return an object with pet details", (done) => {
             let newPet = {
                 "name": "Pet 4",
@@ -88,7 +97,7 @@ describe("Add Pet", () => {
             }
 
             Pets
-                .addPet(Data, PetsFile, newPet)
+                .addPet(DB, newPet)
                 .then(result => {
                     result.should.be.equal(newPet)
                     done()
@@ -108,7 +117,7 @@ describe("Add Pet", () => {
             }
 
             Pets
-                .addPet(Data, PetsFile, newPet)
+                .addPet(DB, newPet)
                 .then(result => {
                     console.log(result)
                 }).catch(err => {
@@ -121,14 +130,14 @@ describe("Add Pet", () => {
 
 describe("List Pets for an Owner", () => {
 
-    describe("Pets.listPetsForAnOwner should return pets and call data handler function", () => {
+    describe("Pets.listPetsForAnOwner should return pets and call DB handler function", () => {
         it("it should return an array of objects with pet details", (done) => {
             let Params = {
-                "owner_id" : 1
+                "owner_id": 1
             }
 
             Pets
-                .listPetsForAnOwner(Data, PetsFile, Params)
+                .listPetsForAnOwner(DB, Params)
                 .then(result => {
                     result.should.be.an.Array
                     result[0].should.have.a.property('owner_id').equal(Params.owner_id)
@@ -142,7 +151,7 @@ describe("List Pets for an Owner", () => {
 
 describe("Edit Pet", () => {
 
-    describe("Pets.editPet should edit pet and call data handler function", () => {
+    describe("Pets.editPet should edit pet and call DB handler function", () => {
         it("it should return an object with pet details", (done) => {
             let updatedPet = {
                 "name": "Pet 4",
@@ -153,11 +162,11 @@ describe("Edit Pet", () => {
             }
 
             let Params = {
-                "pet_id" : 1
+                "pet_id": 1
             }
 
             Pets
-                .editPet(Data, PetsFile, Params, updatedPet)
+                .editPet(DB, Params, updatedPet)
                 .then(result => {
                     result.should.be.equal(updatedPet)
                     done()
@@ -179,11 +188,11 @@ describe("Edit Pet", () => {
             }
 
             let Params = {
-                "pet_id" : 12
+                "pet_id": 12
             }
 
             Pets
-                .editPet(Data, PetsFile, Params, updatedPet)
+                .editPet(DB, Params, updatedPet)
                 .then(result => {
                     console.log(result)
                 }).catch(err => {
@@ -196,14 +205,14 @@ describe("Edit Pet", () => {
 
 describe("List One Pet", () => {
 
-    describe("Pets.listPet should return pet and call data handler function", () => {
+    describe("Pets.listPet should return pet and call DB handler function", () => {
         it("it should return an object with pets details", (done) => {
             let Params = {
-                "pet_id" : 1
+                "pet_id": 1
             }
 
             Pets
-                .listPet(Data, PetsFile, Params)
+                .listPet(DB, Params)
                 .then(result => {
                     result.should.have.a.property("id").equal(Params.pet_id)
                     done()
@@ -215,14 +224,18 @@ describe("List One Pet", () => {
 
     describe("Pets.listPet should return an error message if no records found", () => {
         it("it should return an object with error message", (done) => {
-            let PetsFile = []
+            DB.listPet = function(Params) {
+                return new Promise((resolve, reject) => {
+                    resolve(null)
+                })
+            }
 
             let Params = {
-                "pet_id" : 1
+                "pet_id": 1
             }
 
             Pets
-                .listPet(Data, PetsFile, Params)
+                .listPet(DB, Params)
                 .then(result => {
                     console.log(result)
                 }).catch(err => {
@@ -235,14 +248,14 @@ describe("List One Pet", () => {
 
 describe("List One Owner", () => {
 
-    describe("Owners.listOwner should return owner and call data handler function", () => {
+    describe("Owners.listOwner should return owner and call DB handler function", () => {
         it("it should return an object with owner details", (done) => {
             let Params = {
-                "owner_id" : 1
+                "owner_id": 1
             }
 
             Owners
-                .listOwner(Data, OwnersFile, Params)
+                .listOwner(DB, Params)
                 .then(result => {
                     result.should.have.a.property("id").equal(Params.owner_id)
                     done()
@@ -254,14 +267,18 @@ describe("List One Owner", () => {
 
     describe("Owners.listOwner should return an error message if no records found", () => {
         it("it should return an object with error message", (done) => {
-            let OwnersFile = []
+            DB.listOwner = () => {
+                return new Promise((resolve, reject) => {
+                    resolve(null)
+                });
+            }
 
             let Params = {
-                "owner_id" : 1
+                "owner_id": 1
             }
 
             Owners
-                .listOwner(Data, OwnersFile, Params)
+                .listOwner(DB, Params)
                 .then(result => {
                     console.log(result)
                 }).catch(err => {
