@@ -1,7 +1,7 @@
 const fs = require('fs'),
 ErrMsg = require('./errmsg.js')
 
-module.exports.readFile = (file) => {
+let readFile = (file) => {
     return new Promise((resolve, reject) => {
         fs.readFile(file, (err, data) => {
             if (err) {
@@ -13,7 +13,7 @@ module.exports.readFile = (file) => {
     });
 }
 
-module.exports.writeFile = (file, newData) => {
+let writeFile = (file, newData) => {
     return new Promise((resolve, reject) => {
         fs.writeFile(file, JSON.stringify(newData), (err) => {
             if (err) {
@@ -22,4 +22,9 @@ module.exports.writeFile = (file, newData) => {
             resolve(true)
         })
     })
+}
+
+module.exports = {
+    readFile : readFile,
+    writeFile : writeFile
 }

@@ -1,6 +1,6 @@
 const ErrMsg = require("../utils/errmsg.js")
 
-module.exports.listOwners = (DB) => {
+let listOwners = (DB) => {
 	return new Promise((resolve, reject) => {
 		DB
 			.listOwners()
@@ -17,7 +17,7 @@ module.exports.listOwners = (DB) => {
 	})
 }
 
-module.exports.listOwner = (DB, Params) => {
+let listOwner = (DB, Params) => {
 	return new Promise((resolve, reject) => {
 		DB
 			.listOwner(Params)
@@ -31,4 +31,9 @@ module.exports.listOwner = (DB, Params) => {
 				reject(err)
 			})
 	})
+}
+
+module.exports = {
+    listOwners : listOwners,
+    listOwner : listOwner
 }

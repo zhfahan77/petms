@@ -1,7 +1,7 @@
 const ErrMsg = require("../utils/errmsg.js")
 short = require('shortid-36');
 
-module.exports.listPets = (DB) => {
+let listPets = (DB) => {
 	return new Promise((resolve, reject) => {
 		DB
 			.listPets()
@@ -17,7 +17,7 @@ module.exports.listPets = (DB) => {
 	})
 }
 
-module.exports.addPet = (DB, Pet) => {
+let addPet = (DB, Pet) => {
 	return new Promise((resolve, reject) => {
 		if(!Pet.name || !Pet.color || !Pet.age || !Pet.breed || !Pet.owner_id) {
 			return reject(ErrMsg.AddPetRequiredFieldsNotFound)
@@ -36,7 +36,7 @@ module.exports.addPet = (DB, Pet) => {
 	})
 }
 
-module.exports.listPetsForAnOwner = (DB, Params) => {
+let listPetsForAnOwner = (DB, Params) => {
 	return new Promise((resolve, reject) => {
 		DB
 			.listPetsForAnOwner(Params)
@@ -52,7 +52,7 @@ module.exports.listPetsForAnOwner = (DB, Params) => {
 	})
 }
 
-module.exports.editPet = (DB, Params, Pet) => {
+let editPet = (DB, Params, Pet) => {
 	return new Promise((resolve, reject) => {
 		DB
 			.editPet(Params, Pet)
@@ -68,7 +68,7 @@ module.exports.editPet = (DB, Params, Pet) => {
 	})
 }
 
-module.exports.listPet = (DB, Params) => {
+let listPet = (DB, Params) => {
 	return new Promise((resolve, reject) => {
 		DB
 			.listPet(Params)
@@ -82,4 +82,12 @@ module.exports.listPet = (DB, Params) => {
 				reject(err)
 			})
 	})
+}
+
+module.exports = {
+    listPets : listPets,
+    addPet : addPet,
+    listPetsForAnOwner : listPetsForAnOwner,
+    editPet : editPet,
+    listPet : listPet
 }

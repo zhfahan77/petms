@@ -2,7 +2,7 @@ const Core = require("../core/pets.js"),
 DB = require("../db/pets.js"),
 logger = require("../utils/logger.js")
 
-module.exports.listPets = (req, res) => {
+let listPets = (req, res) => {
 	Core
 		.listPets(DB)
 		.then(result => {
@@ -15,7 +15,7 @@ module.exports.listPets = (req, res) => {
 		})
 }
 
-module.exports.addPet = (req, res) => {
+let addPet = (req, res) => {
 	Core
 		.addPet(DB, req.body)
 		.then(result => {
@@ -28,7 +28,7 @@ module.exports.addPet = (req, res) => {
 		})
 }
 
-module.exports.listPetsForAnOwner = (req, res) => {
+let listPetsForAnOwner = (req, res) => {
 	Core
 		.listPetsForAnOwner(DB, req.params)
 		.then(result => {
@@ -41,7 +41,7 @@ module.exports.listPetsForAnOwner = (req, res) => {
 		})
 }
 
-module.exports.editPet = (req, res) => {
+let editPet = (req, res) => {
 	Core
 		.editPet(DB, req.params, req.body)
 		.then(result => {
@@ -54,7 +54,7 @@ module.exports.editPet = (req, res) => {
 		})
 }
 
-module.exports.listPet = (req, res) => {
+let listPet = (req, res) => {
 	Core
 		.listPet(DB, req.params)
 		.then(result => {
@@ -65,4 +65,12 @@ module.exports.listPet = (req, res) => {
 			res.status(err.statusCode || 500).json(err)
 			logger.error(res.locals.reqID + " " + JSON.stringify(err))
 		})
+}
+
+module.exports = {
+	listPets : listPets,
+	addPet : addPet,
+	listPetsForAnOwner : listPetsForAnOwner,
+	editPet : editPet,
+	listPet : listPet
 }
