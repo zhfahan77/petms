@@ -11,7 +11,6 @@ let listOwners = (DB) => {
 				resolve(result)
 			})
 			.catch(err => {
-				console.log("in err", err)
 				reject(err)
 			})
 	})
