@@ -3,7 +3,7 @@ Path = require("path"),
 PROOT = Path.resolve(),
 File = PROOT + process.env.PETS_FILE_PATH
 
-module.exports.listPets = () => {
+let listPets = () => {
     return new Promise((resolve, reject) => {
         FSHandler
             .readFile(File)
@@ -16,7 +16,7 @@ module.exports.listPets = () => {
     });
 }
 
-module.exports.addPet = (Pet) => {
+let addPet = (Pet) => {
     return new Promise((resolve, reject) => {
         FSHandler
             .readFile(File)
@@ -36,7 +36,7 @@ module.exports.addPet = (Pet) => {
     });
 }
 
-module.exports.listPetsForAnOwner = (Params) => {
+let listPetsForAnOwner = (Params) => {
     return new Promise((resolve, reject) => {
         FSHandler
             .readFile(File)
@@ -50,7 +50,7 @@ module.exports.listPetsForAnOwner = (Params) => {
     });
 }
 
-module.exports.editPet = (Params, Pet) => {
+let editPet = (Params, Pet) => {
     return new Promise((resolve, reject) => {
         var updatedData
         FSHandler
@@ -85,7 +85,7 @@ module.exports.editPet = (Params, Pet) => {
     });
 }
 
-module.exports.listPet = (Params) => {
+let listPet = (Params) => {
     return new Promise((resolve, reject) => {
         FSHandler
             .readFile(File)
@@ -101,4 +101,12 @@ module.exports.listPet = (Params) => {
                 reject(err)
             })
     });
+}
+
+module.exports = {
+    listPets : listPets,
+    addPet : addPet,
+    listPetsForAnOwner : listPetsForAnOwner,
+    editPet : editPet,
+    listPet : listPet
 }

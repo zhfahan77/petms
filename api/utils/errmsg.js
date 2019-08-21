@@ -1,32 +1,50 @@
-module.exports.NotFound = {
+let NotFound = {
     "message": "No records Found",
     "statusCode": 404
 }
-module.exports.RequiredFieldNotFound = {
+
+let RequiredFieldNotFound = {
     "message": "Required Field Not Found",
     "statusCode": 404
 }
-module.exports.AddPetRequiredFieldsNotFound = {
+
+let AddPetRequiredFieldsNotFound = {
     "message": "Required Fields Not Found; name, color, age, breed, owner_id fields are required",
     "statusCode": 404
 }
-module.exports.DefaultRouteException = {
+
+let DefaultRouteException = {
     "message": "Oops! Nothing found",
     "statusCode": 404
 }
-module.exports.BadRequest = {
+
+let BadRequest = {
     "message": "404 Bad Request, please check your specified endpoint and request method",
     "statusCode": 404
 }
-module.exports.OK = {
+
+let OK = {
     "message": "OK",
     "statusCode": 200
 }
-module.exports.SomethingWentWrong = {
+
+let SomethingWentWrong = {
     "message": "Something Went Wrong",
     "statusCode": 500
 }
-module.exports.MaxRequestsExceeds = {
-    "message" : "Maximum requests per 15 min exceeds, please try again",
-    "statusCode" : 429
+
+let MaxRequestsExceeds = {
+    "message": "Maximum requests per 15 min exceeds, please try again",
+    "statusCode": 429
+}
+
+module.exports = {
+    NotFound: NotFound,
+    RequiredFieldNotFound: RequiredFieldNotFound,
+    AddPetRequiredFieldsNotFound: AddPetRequiredFieldsNotFound,
+    DefaultRouteException: DefaultRouteException,
+    BadRequest: BadRequest,
+    OK: OK,
+    SomethingWentWrong: SomethingWentWrong,
+    MaxRequestsExceeds: MaxRequestsExceeds
 }
