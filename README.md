@@ -18,7 +18,6 @@ Create new Dir in project root named JSON and copy all the contents of sample-js
 or Shortcut command
 
 ```sh
-$ mkdir -p JSON
 $ make init
 ```
 

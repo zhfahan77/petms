@@ -26,7 +26,9 @@ test: ## Run E2E Tests
 	@npm test
 
 init: ## Reset Database
-	@echo "Resetting Database"
+	@echo "Copying .env, Creating JSON Dir, Resetting Database"
+	@mkdir -p JSON
+	@cp .env.sample .env
 	@cp sample-json/* JSON/
 
 dockertest: ## Run E2E Tests in Docker
