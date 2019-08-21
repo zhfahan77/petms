@@ -6,7 +6,7 @@ module.exports.listPets = (Data, File) => {
 		Data
 			.listPets(File)
 			.then(result => {
-				if(!result || !result.length) {
+				if(!result.length) {
 					return reject(ErrMsg.NotFound)
 				}
 				resolve(result)
@@ -41,7 +41,7 @@ module.exports.listPetsForAnOwner = (Data, File, Params) => {
 		Data
 			.listPetsForAnOwner(File, Params)
 			.then(result => {
-				if(!result || !result.length) {
+				if(!result.length) {
 					return reject(ErrMsg.NotFound)
 				}
 				resolve(result)
@@ -60,7 +60,7 @@ module.exports.editPet = (Data, File, Params, Pet) => {
 				resolve(result)
 			})
 			.catch(err => {
-				if(!err || !err.length) {
+				if(!err.length) {
 					return reject(ErrMsg.NotFound)
 				}
 				reject(ErrMsg.SomethingWentWrong)

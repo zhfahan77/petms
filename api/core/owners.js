@@ -5,7 +5,7 @@ module.exports.listOwners = (Data, File) => {
 		Data
 			.listOwners(File)
 			.then(result => {
-				if(!result || !result.length) {
+				if(!result.length) {
 					return reject(ErrMsg.NotFound)
 				}
 				resolve(result)
