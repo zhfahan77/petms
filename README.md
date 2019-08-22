@@ -420,19 +420,12 @@ Running Unit Tests
 
 ```
 .
-├── Dockerfile
-├── JSON
-│   ├── owners.json
-│   ├── pets.json
-│   └── pets_test.json
-├── Makefile
-├── README.md
 ├── access.log
 ├── api
 │   ├── core
 │   │   ├── owners.js
 │   │   └── pets.js
-│   ├── data
+│   ├── db
 │   │   ├── owners.js
 │   │   └── pets.js
 │   ├── features
@@ -445,17 +438,23 @@ Running Unit Tests
 │       ├── fshandler.js
 │       ├── logger.js
 │       └── utils.js
-├── app.js
 ├── appconfig.js
+├── app.js
+├── Dockerfile
 ├── error.log
-├── package-lock.json
+├── JSON
+│   ├── owners.json
+│   └── pets.json
+├── Makefile
 ├── package.json
+├── package-lock.json
+├── README.md
 ├── sample-json
 │   ├── owners.json
 │   └── pets.json
 └── test
     ├── e2e.js
-    ├── mocked_data_handler.js
+    ├── mocked_db_handler.js
     ├── mocked_json
     │   ├── owners.json
     │   └── pets.json
